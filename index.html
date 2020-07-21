@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    </head>
+    <body class="pt-5">
+        <div class="container p-2" style="border: 1px solid black;" id="inputs">
+            <div class="d-flex pb-2">
+                Number1
+                <input type="number" class="form-control w-25 " name="input1" id="input1">
+            </div>
+            <div class="d-flex pb-2">
+                Number2
+                <input type="number" class="form-control w-25 " name="input2" id="input2">
+            </div>
+            <div class="d-flex pb-2">
+                operation
+                <select name="operation" class="form-control w-25" >
+                    <option value="+" selected>plus</option>
+                    <option value="-">minus</option>
+                    <option value="*">multiple</option>
+                    <option value="/">division</option>
+                </select>
+            </div>
+            
+            <button class="btn btn-primary d-block" id="calc">Calc</button>
+            <script>
+                $("#calc").click(function(){
+                    if($("[name=operation").val()=='+'){
+                        console.log($("[name=operation").val());
+                        $("#answer").text(parseFloat($("#input1").val())+parseFloat($("#input2").val()));
+                    }else if($("[name=operation").val()=='-'){
+                        $("#answer").text(parseFloat($("#input1").val())-parseFloat($("#input2").val()));
+                    }else if($("[name=operation").val()=='*'){
+                        $("#answer").text(parseFloat($("#input1").val())*parseFloat($("#input2").val()));
+                    }else if($("[name=operation").val()=='/'){
+                        $("#answer").text(parseFloat($("#input1").val())/parseFloat($("#input2").val()));
+                    }
+                    $("#inputs").slideUp(300,function(){
+                        $("#result").slideDown(300);
+                    })
+                })
+            </script>
+        </div>
+        <div id="result" class="container p-2" style="display:none;">
+            <div class="m-2">
+                answer is <span id="answer"></span>
+            </div>
+            <button class="btn btn-primary" id="Back">Back</button>
+            <script>
+                $("#Back").click(function(){
+                    $("#result").slideUp(300,function(){
+                        $("#inputs").slideDown(300);
+                    })
+                });               
+            </script>
+        </div>
+    </body>
+</html>
